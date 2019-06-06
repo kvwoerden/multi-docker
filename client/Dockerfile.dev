@@ -1,0 +1,8 @@
+FROM node:alpine
+ENV http_proxy 'http://rgb-proxy.avl.com:8080'
+ENV https_proxy 'http://rgb-proxy.avl.com:8080'
+WORKDIR '/app'
+COPY ./package.json ./
+RUN npm install
+COPY . .
+CMD ["npm", "run", "start"]
