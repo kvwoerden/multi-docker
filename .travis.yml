@@ -15,5 +15,8 @@ after_success:
   - docker build -t kvanwoerden/multi-worker ./worker
   # Log in the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  - docker push kvanwoerden/multi-client kvanwoerden/multi-nginx kvanwoerden/multi-server kvanwoerde/multi-worker
+  - docker push kvanwoerden/multi-client
+  - docker push kvanwoerden/multi-nginx
+  - docker push kvanwoerden/multi-server
+  - docker push kvanwoerde/multi-worker
 
