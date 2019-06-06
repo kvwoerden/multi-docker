@@ -18,5 +18,5 @@ after_success:
   - docker push kvanwoerden/multi-client
   - docker push kvanwoerden/multi-nginx
   - docker push kvanwoerden/multi-server
-  - docker push kvanwoerde/multi-worker
+  - docker push kvanwoerden/multi-worker
 
