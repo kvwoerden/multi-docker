@@ -1,0 +1,19 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t kvanwoerden/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run kvanwoerden/react-test npm test -- --coverage
+
+after_success:
+  - docker build -t kvanwoerden/multi-client ./client
+  - docker build -t kvanwoerden/multi-nginx ./nginx
+  - docker build -t kvanwoerden/multi-server ./server
+  - docker build -t kvanwoerden/multi-worker ./worker
+  # Log in the docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push kvanwoerden/multi-client kvanwoerden/multi-nginx kvanwoerden/multi-server kvanwoerde/multi-worker
+
